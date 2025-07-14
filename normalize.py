@@ -15,9 +15,3 @@ def normalize_cpu_name(name):
     # 5) Collapse non-alphanumerics to spaces, strip
     name = re.sub(r"[^a-z0-9]+", " ", name).strip()
     return name
-
-def find_best_match(raw_name, geekbench_names):
-    norm = normalize_cpu_name(raw_name)
-    candidates = {i: normalize_cpu_name(x) for i, x in enumerate(geekbench_names)}
-    best_norm, score, idx = process.extractOne(norm, candidates, scorer=fuzz.token_sort_ratio)
-    return geekbench_names[idx], score

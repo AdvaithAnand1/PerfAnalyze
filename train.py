@@ -24,4 +24,6 @@ def trainTable(file = "templog.CSV"):
     trainingdata.drop(trainingdata.index[-2:], inplace=True)
     trainingdata = trainingdata.get(["Total CPU Usage [%]", "Core Clocks (avg) [MHz]", "Core C0 Residency (avg) [%]", "Core C1 Residency (avg) [%]", "Core C6 Residency (avg) [%]", "CPU Core [°C]", "CPU SOC [°C]", "CPU Package Power [W]", "GPU Temperature [°C]", "GPU Clock [MHz]", "GPU ASIC Power [W]", "GPU Memory Clock [MHz]", "GPU Utilization [%]", "Read Rate [MB/s]", "Write Rate [MB/s]", "Current DL rate [KB/s]", "Current UP rate [KB/s]"])
     trainingdata = trainingdata.rename(columns = mapping)
+    trainingdata = trainingdata.astype(float)
+    trainingdata['CPU Clock'] /= 400
     return trainingdata
